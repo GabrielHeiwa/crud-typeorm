@@ -9,7 +9,10 @@ export default {
       const post = await getRepository(Post).save(req.body);
       res.json(post);
     } catch (error) {
-      return res.json({ message: "create operation failed, try again.", info: error  });
+      return res.json({
+        message: "create operation failed, try again.",
+        info: error,
+      });
     }
   },
 
@@ -32,7 +35,10 @@ export default {
       });
       return res.json(post);
     } catch (error) {
-      return res.json({message: "qeury any posts failed, try again.", info: error });
+      return res.json({
+        message: "qeury any posts failed, try again.",
+        info: error,
+      });
     }
   },
 
@@ -43,7 +49,10 @@ export default {
       const post = await getRepository(Post).update({ id: id }, req.body);
       return res.json(post);
     } catch (error) {
-      return res.json({ message: "update operation failed, try again.", info: error  });
+      return res.json({
+        message: "update operation failed, try again.",
+        info: error,
+      });
     }
   },
 
@@ -51,18 +60,27 @@ export default {
     const { id } = req.params;
 
     try {
-      const post = await getRepository(Post).delete(id);
+      await getRepository(Post).delete(id);
       res.json({ message: "delete operation success." });
     } catch (error) {
-      res.json({ message: "delete operation failed, try again.", info: error  });
+      res.json({ message: "delete operation failed, try again.", info: error });
     }
   },
 
-  async getAllPostFromUser(req:Request, res:Response){
+  async getAllPostFromUser(req: Request, res: Response) {
+    const { userId } = req.params;
     try {
-        return res.json({message: "operation complete"})
+      const userPost = await getRepository(Post).find({
+        where: {
+          user: userId,
+        },
+      });
+      return res.json({ message: "operation complete", userPost });
     } catch (error) {
-        return res.json({message: "query all post from user failed, try again.", info: error})
+      return res.json({
+        message: "query all post from user failed, try again.",
+        info: error,
+      });
     }
-  }
+  },
 };

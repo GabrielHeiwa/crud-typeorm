@@ -10,7 +10,7 @@ routes.post("/user", UserController.createUser);
 
 routes.get("/post/:id", PostController.getAnyPost);
 routes.get("/post", PostController.getAllPost);
-routes.get("/post/:user_id", PostController.getAllPostFromUser);
+routes.get("/post/user/:userId", PostController.getAllPostFromUser);
 routes.post("/post", PostController.createPost);
 routes.put("/post/:id", PostController.udpatePost);
 routes.delete("/post/:id", PostController.deletePost);
