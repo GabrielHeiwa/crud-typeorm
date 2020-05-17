@@ -26,11 +26,11 @@ export default {
   },
 
   async getAnyPost(req: Request, res: Response) {
-    const { id } = req.params;
+    const { postId } = req.params;
     try {
       const post = await getRepository(Post).find({
         where: {
-          user: id,
+          user: postId,
         },
       });
       return res.json(post);
@@ -43,10 +43,10 @@ export default {
   },
 
   async udpatePost(req: Request, res: Response) {
-    const { id } = req.params;
+    const { postId } = req.params;
 
     try {
-      const post = await getRepository(Post).update({ id: id }, req.body);
+      const post = await getRepository(Post).update({ id: postId }, req.body);
       return res.json(post);
     } catch (error) {
       return res.json({
@@ -57,10 +57,10 @@ export default {
   },
 
   async deletePost(req: Request, res: Response) {
-    const { id } = req.params;
+    const { postId } = req.params;
 
     try {
-      await getRepository(Post).delete(id);
+      await getRepository(Post).delete(postId);
       res.json({ message: "delete operation success." });
     } catch (error) {
       res.json({ message: "delete operation failed, try again.", info: error });

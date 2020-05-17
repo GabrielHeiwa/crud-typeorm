@@ -40,4 +40,30 @@ export default {
       });
     }
   },
+
+  async updateUser(req: Request, res: Response) {
+    const { userId } = req.params;
+    try {
+      await getRepository(User).update({ id: parseInt(userId) }, req.body);
+      return res.json({ message: "update user operation success." });
+    } catch (err) {
+      return res.json({
+        message: "update user operation failed, try again.",
+        info: err,
+      });
+    }
+  },
+
+  async deleteUser(req: Request, res: Response) {
+    const { userId } = req.params;
+    try {
+      await getRepository(User).delete({ id: parseInt(userId) });
+      return res.json({ message: "delete operation success." });
+    } catch (err) {
+      return res.json({
+        message: "delete operation failed, try again.",
+        info: err,
+      });
+    }
+  },
 };
