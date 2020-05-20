@@ -3,20 +3,23 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from "typeorm";
 
 @Entity()
-export class User {
+export class Events {
   @PrimaryGeneratedColumn()
-  id: number;
+  event_id: number;
 
   @Column()
   name: string;
+
+  @Column()
+  year: string;
 
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
-  udpate_at: Date;
+  update_at: Date;
 }
