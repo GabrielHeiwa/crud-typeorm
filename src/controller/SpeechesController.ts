@@ -69,7 +69,7 @@ export default {
   async delete(req: Request, res: Response) {
     const { speeches_id } = req.params;
     try {
-      await getRepository(speeches).delete(speeches_id);
+      await getRepository(Speeches).delete(speeches_id);
       return res.sendStatus(200).json({message: "delete operation success."});
     } catch (error) {
       return res.status(400).json({
