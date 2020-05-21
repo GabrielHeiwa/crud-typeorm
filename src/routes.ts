@@ -1,7 +1,9 @@
 import { Router } from "express";
 import CoursesController from "./controller/CoursesController";
-import EventController from './controller/EventsController';
-import SpeechesController  from './controller/SpeechesController';
+import EventController from "./controller/EventsController";
+import SpeechesController from "./controller/SpeechesController";
+import SubscriberController from "./controller/SubscribersController";
+
 const routes = Router();
 
 routes.get("/courses", CoursesController.index);
@@ -20,5 +22,9 @@ routes.get("/speeches/:speeches_id", SpeechesController.show);
 routes.post("/speeches", SpeechesController.create);
 routes.delete("/speeches/:speeches_id", SpeechesController.delete);
 routes.put("/speeches/:speeches_id", SpeechesController.update);
+
+routes.get("/subscriber/:event_id", SubscriberController.indexInEvent);
+routes.post("/subscriber", SpeechesController.create);
+// routes.put("/subscriber/:speeches_id", SpeechesController.update);
 
 export default routes;

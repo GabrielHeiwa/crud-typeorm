@@ -4,7 +4,11 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToMany,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
+import { Subscribers } from "./Subscribers";
 
 @Entity()
 export class Events {
@@ -22,4 +26,5 @@ export class Events {
 
   @UpdateDateColumn()
   update_at: Date;
+
 }
