@@ -24,9 +24,9 @@ routes.post("/speeches", SpeechesController.create);
 routes.delete("/speeches/:speeches_id", SpeechesController.delete);
 routes.put("/speeches/:speeches_id", SpeechesController.update);
 
-// routes.get("/subscriber/relationship", SubscriberController.indexWithRelationship)
+routes.get("/subscriber/relationship", SubscriberController.indexWithRelationship);
 routes.get("/subscriber/:event_id", SubscriberController.indexForEvent);
 routes.post("/subscriber", SubscriberController.create);
-// routes.put("/subscriber/:speeches_id", SpeechesController.update);
+routes.put("/subscriber/:speeches_id", SpeechesController.update);
 
 export default routes;

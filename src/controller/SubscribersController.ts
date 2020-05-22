@@ -46,7 +46,7 @@ export default {
 
       if (subscriber_event === undefined)
         return res.status(400).json({
-          message: "Event id not found, try again."
+          message: "Event id not found, try again.",
         });
 
       return res.status(200).json({
@@ -60,17 +60,17 @@ export default {
       });
     }
   },
-  // async indexWithRelationship(req: Request, res: Response) {
-  //   try {
-  //     const relationship = await getRepository(Subscribers).find({
-  //       relations: ["event_id"]
-  //     });
-  //     return res.status(201).json(relationship);
-  //   } catch (error) {
-  //     res.status(400).json({
-  //       message: "operation failed, try again.",
-  //       info: error,
-  //     });
-  //   }
-  // },
+  async indexWithRelationship(req: Request, res: Response) {
+    try {
+      const relationship = await getRepository(Subscribers).find({
+        relations: ["event_id"],
+      });
+      return res.status(201).json(relationship);
+    } catch (error) {
+      res.status(400).json({
+        message: "operation failed, try again.",
+        info: error,
+      });
+    }
+  },
 };
