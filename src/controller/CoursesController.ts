@@ -2,6 +2,12 @@ import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { Courses } from "../entity/Courses";
 export default {
+  async relationship (req:Request, res:Response){
+    const courses_relationship = await getRepository(Courses).find({
+      relations: ["event_id"]
+    });
+    return res.status(200).json(courses_relationship);
+  },
   async create(req: Request, res: Response) {
     try {
       const course_created = await getRepository(Courses).save(req.body);

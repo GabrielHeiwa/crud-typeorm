@@ -6,6 +6,7 @@ import SubscriberController from "./controller/SubscribersController";
 
 const routes = Router();
 
+routes.get("/courses/relationship", CoursesController.relationship);
 routes.get("/courses", CoursesController.index);
 routes.get("/courses/:courses_id", CoursesController.show);
 routes.post("/courses", CoursesController.create);
@@ -23,8 +24,9 @@ routes.post("/speeches", SpeechesController.create);
 routes.delete("/speeches/:speeches_id", SpeechesController.delete);
 routes.put("/speeches/:speeches_id", SpeechesController.update);
 
-routes.get("/subscriber/:event_id", SubscriberController.indexInEvent);
-routes.post("/subscriber", SpeechesController.create);
+// routes.get("/subscriber/relationship", SubscriberController.indexWithRelationship)
+routes.get("/subscriber/:event_id", SubscriberController.indexForEvent);
+routes.post("/subscriber", SubscriberController.create);
 // routes.put("/subscriber/:speeches_id", SpeechesController.update);
 
 export default routes;

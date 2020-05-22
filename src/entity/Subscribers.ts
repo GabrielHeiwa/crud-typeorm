@@ -4,7 +4,6 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
   JoinColumn,
   ManyToOne,
 } from "typeorm";
@@ -27,16 +26,13 @@ export class Subscribers {
   @Column()
   password: string;
 
+  @ManyToOne((type) => Events, (events) => events.event_id)
+  @JoinColumn()
+  event_id: Events;
+  
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
   updated_at: Date;
-
-  @ManyToOne(type => Events, event => event.event_id,{
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE"
-  })
-  @JoinColumn({name: "event_id"})
-  event_id: Events
 }
